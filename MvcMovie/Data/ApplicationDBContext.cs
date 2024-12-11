@@ -6,6 +6,6 @@ namespace MvcMovie.Data{
         public ApplicationDBContext(DbContextOptions<ApplicationDBContext> options) :base(options){
 
         }
-        public DbSet<Ticket> Students { get; set; }
+        public DbSet<Ticket> Tickets { get; set; }
     }
 }

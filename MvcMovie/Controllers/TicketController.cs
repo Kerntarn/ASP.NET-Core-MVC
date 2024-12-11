@@ -1,11 +1,16 @@
 using Microsoft.AspNetCore.Mvc;
+using MvcMovie.Data;
 using MvcMovie.Models;
 
 namespace MvcMovie.Controllers;
 
 public class TicketController : Controller
 {
+    private readonly ApplicationDBContext _db;
 
+    public TicketController(ApplicationDBContext db){
+        _db = db;
+    }
     public IActionResult Index(){
         Ticket t1 = new Ticket();
         t1.Id = "01";
@@ -28,7 +33,7 @@ public class TicketController : Controller
         return View(allTicket);
     }
 
-    public IActionResult Create(){
+    public IActionResult Add(){
         return View();
     }
 
