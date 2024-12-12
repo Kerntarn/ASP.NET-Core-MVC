@@ -11,7 +11,7 @@ using MvcMovie.Data;
 namespace MvcMovie.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20241211140506_addTicketDB")]
+    [Migration("20241212070534_addTicketDB")]
     partial class addTicketDB
     {
         /// <inheritdoc />
@@ -26,8 +26,11 @@ namespace MvcMovie.Migrations
 
             modelBuilder.Entity("MvcMovie.Models.Ticket", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Movie")
                         .IsRequired()
