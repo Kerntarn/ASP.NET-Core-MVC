@@ -1,18 +1,47 @@
-@model IEnumerable<MvcMovie.Models.Ticket>;
+@model IEnumerable<Ticket>;
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1 style="color:blue;" class="text-center">Index of Ticket na</h1>
-
-@foreach(var ticket in Model){
-    <div>Ticket ID : @ticket.Id</div>
-    <div>Ticket Movie name : @ticket.Movie</div>
-    <div>Ticket price : @ticket.Price</div>
-    @if (ticket.Price > 500){
-        <strong class="text-danger"> Expensive </strong>
-    } else{
-        <strong class="text-success"> Cheap </strong>
-    }
-    <hr/>
+@if (Model.Count() > 0){
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th> ID </th>
+                <th> Movie </th>
+                <th> Price </th>
+                <th> Edit </th>
+                <th> Del </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ticket in Model){
+                <tr>
+                <td>@ticket.Id</td> 
+                <td>@ticket.Movie</td> 
+                <td>@ticket.Price</td> 
+                <td>
+                        <a class="btn btn-warning" 
+                        asp-controller="Ticket"
+                        asp-action="Edit"
+                        asp-route-id="@ticket.Id">
+                        Edit</a>
+                    </td> 
+                <td>
+                        <a class="btn btn-danger"
+                        asp-controller="Ticket"
+                        asp-action="Delete"
+                        asp-route-id="@ticket.Id"
+                        onclick="return confirm('Are you sure to delete @ticket.Movie?')">
+                        Del</a>
+                    </td> 
+                </tr>
+            }
+        </tbody>
+    </table>
+}else{
+    <div class="alert alert-secondary">There's no Ticket on sale now</div>
 }
+
+
+

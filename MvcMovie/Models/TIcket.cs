@@ -1,19 +1,17 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MvcMovie.Models
 {
     public class Ticket{
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         
-        [Required]
+        [Required(ErrorMessage = "Please Enter a Movie's Name.")]
         [DisplayName("Movie's Name")]
         public string Movie { get; set; }
         [DisplayName("Movie's Price per ticket")]
-        [Range(0, 1000)]
+        [Range(0, 1000, ErrorMessage = "Invalid or Too Expensive Price.")]
         public int Price { get; set; }
     }
 }

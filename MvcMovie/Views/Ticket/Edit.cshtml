@@ -1,10 +1,10 @@
 @model Ticket;
 @{
-    ViewData["Title"] = "Add";
+    ViewData["Title"] = "Edit";
 }
 
-<h1 style="color:blue;">Buy a Ticket</h1>
-<form method="POST" as asp-asp-controller="Ticket" asp-action="Add">
+<h1 class="text_center">Edit Page</h1>
+<form method="POST" as asp-asp-controller="Ticket" asp-action="Edit">
     <div class="form-group">
         <label asp-for="Movie"></label>
         <input type="text" asp-for="Movie" class="form-control"/>
@@ -15,5 +15,5 @@
         <input type="number" asp-for="Price" class="form-control"/>
         <span asp-validation-for="Price" class="text-danger"></span>
     </div>
-    <button type="submit" class="btn btn-primary my-2"> Add ticket </button>
+    <button type="submit" class="btn btn-primary my-2"> Update ticket </button>
 </form>
