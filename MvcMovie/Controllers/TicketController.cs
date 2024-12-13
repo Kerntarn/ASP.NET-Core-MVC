@@ -13,24 +13,9 @@ public class TicketController : Controller
         _db = db;
     }
     public IActionResult Index(){
-        Ticket t1 = new Ticket();
-        t1.Id = 1;
-        t1.Movie = "AOT";
-        t1.Price = 500;
-        Ticket t2 = new Ticket();
-        t2.Id = 2;
-        t2.Movie = "Barbie";
-        t2.Price = 450;
-        Ticket t3 = new Ticket();
-        t3.Id = 3;
-        t3.Movie = "TENET";
-        t3.Price = 600;
-
-        List<Ticket> allTicket = new();
-        allTicket.Add(t1);
-        allTicket.Add(t2);
-        allTicket.Add(t3);
-
+        
+        IEnumerable<Ticket> allTicket = _db.Tickets;
+        
         return View(allTicket);
     }
 
@@ -41,10 +26,13 @@ public class TicketController : Controller
     [HttpPost]
     [ValidateAntiForgeryToken]
     public IActionResult Add(Ticket obj){
-        _db.Tickets.Add(obj);
-        _db.SaveChanges();
-        return RedirectToAction("Index");
-    }
+        if (ModelState.IsValid){
+            _db.Tickets.Add(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        return View(obj);
+    }   
 
     public IActionResult Delete(){
         return View();

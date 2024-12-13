@@ -13,7 +13,7 @@ namespace MvcMovie.Models
         [DisplayName("Movie's Name")]
         public string Movie { get; set; }
         [DisplayName("Movie's Price per ticket")]
-        [Range(0, 100)]
+        [Range(0, 1000)]
         public int Price { get; set; }
     }
 }
